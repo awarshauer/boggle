@@ -212,6 +212,11 @@ function displayResults(solveListObj) {
     solvedWords.innerText =`You solved ${wordList.length} / ${solveList.length}`
 
     solvedWordList.innerHTML = solveListObj.reduce((acc, obj) => {
+        if (inArray(wordList, obj.word)){
+            console.log('it was in the array')
+            return acc + `<li class="c-found" cdata coords="${JSON.stringify(obj.coords)}">${obj.word}</li>`;  
+        } else {
         return acc + `<li cdata coords="${JSON.stringify(obj.coords)}">${obj.word}</li>`;
+    }
     }, '');
 }

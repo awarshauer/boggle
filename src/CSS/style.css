@@ -106,6 +106,10 @@
 	column-count: 2;
 	column-gap: 40px;
 }
+
+.c-found {
+	text-decoration-line: line-through;
+}
 /**********************************************
 *** Timer
 **********************************************/
