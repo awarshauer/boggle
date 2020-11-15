@@ -73,15 +73,15 @@
 }
 
 #btn-stop {
-	visibility: hidden;
+	display: none;
 }
 
 #words {
-	visibility: hidden;
+	display: none;
 }
 
 #add-btn {
-	visibility: hidden;
+	display: none;
 }
 
 .timer {
@@ -99,7 +99,8 @@
 }
 
 .c-results {
-	visibility: hidden;
+	padding: 20px 0px;
+	display: none;
 	font-size: 22px;
 }
 .c-wordlist {

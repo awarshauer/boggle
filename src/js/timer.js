@@ -89,11 +89,11 @@ gameOver() {
 	if(solveList.length) {
         displayResults(solveListObj);
     }
-	document.querySelector('#words').style.visibility = "hidden";
-	document.querySelector('#btn-stop').style.visibility = "hidden";
-	document.querySelector('#add-btn').style.visibility = "hidden";
-	document.querySelector('#report').style.visibility = "hidden";
-	document.querySelector('.c-results').style.visibility ="visible";
+	document.querySelector('#words').style.display = "none";
+	document.querySelector('#btn-stop').style.display = "none";
+	document.querySelector('#add-btn').style.display = "none";
+	document.querySelector('#report').style.display = "none";
+	document.querySelector('.c-results').style.display = "block";
 }
 
 

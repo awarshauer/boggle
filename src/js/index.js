@@ -15,7 +15,7 @@ function newGame() {
 	onCallSolve();
 	
 	//title
-	document.getElementById('heading').innerHTML = "Let's a go!";
+	document.getElementById('heading').innerHTML = "Let's go!";
 	startbtn.innerHTML = 'Again?';
 
 	//timer
@@ -31,10 +31,12 @@ function newGame() {
 	// 	displayList.removeChild(displayList.firstChild);
 	// }
 
-	stopbtn.style.visibility = "visible";
-	addbtn.style.visibility = "visible";
-	document.querySelector('#words').style.visibility = "visible";
-	document.querySelector('.c-results').style.visibility ="hidden";
+	stopbtn.style.display = "inline";
+	addbtn.style.display = "inline";
+	document.querySelector('#report').style.display = "block";
+	document.querySelector('#report').style.visibility = "hidden";
+	document.querySelector('#words').style.display = "inline";
+	document.querySelector('.c-results').style.display = "none";
 }
 
 function stopGame(){
