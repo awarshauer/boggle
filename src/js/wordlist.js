@@ -2,11 +2,6 @@ export {wordList, addWordsToList, wordInput, countWordList, Trie, myTrie, getAdj
 import {grid} from './board.js'
 import {newGame} from './index.js'
 
-function inArray(arr, item) {
-    return (arr.indexOf(item) !== -1);
-}
-
-
 class Trie{
 
     constructor(){
@@ -87,19 +82,15 @@ let wordList = [];
 let wordInput = document.getElementById('words');
 let enteredWord = '';
 
-function inList(arr, word) {
-	return (arr.indexOf(word) !== -1);
-}
 
 function addWordsToList() {
     enteredWord = wordInput.value.toLowerCase();
     alertArea.style.visibility = "visible";
-	if(inArray(solveList, enteredWord) && !inList(wordList, enteredWord) && enteredWord.length > 2){
+	if(inArray(solveList, enteredWord) && !inArray(wordList, enteredWord) && enteredWord.length > 2){
 	wordList.push(enteredWord); 
 	
     //display
-   
-	// let newWord = document.createElement('li');
+   	// let newWord = document.createElement('li');
 	// newWord.classList.add('each-word');
 	// newWord.innerText = enteredWord;
     // displayList.appendChild(newWord);
@@ -107,7 +98,6 @@ function addWordsToList() {
 } else{
     alertArea.innerHTML = `${enteredWord} is not a valid word`;
 }
-	//reset
 	wordInput.value = '';
 }
 
@@ -140,6 +130,14 @@ let solveListObj = [];
 let coords = [];
 let solveList = [];
 
+//DOM
+const numdWords = document.getElementById('num-words');
+const solvedWords = document.getElementById('num-solve');
+const solvedWordList = document.getElementById('word-list');
+
+function inArray(arr, item) {
+    return (arr.indexOf(item) !== -1);
+}
 
 function arrayMatch(first, second) {
     return first.some((item) => {
@@ -206,10 +204,6 @@ function getAdjacentLetters(currentWord, position, usedPositions) {
         return acc;
     }, []);
     }
-
-const numdWords = document.getElementById('num-words');
-const solvedWords = document.getElementById('num-solve');
-const solvedWordList = document.getElementById('word-list');
 
 function displayResults(solveListObj) {
     // sort available words by length, descending
