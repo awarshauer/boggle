@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="./src/CSS/style.css">
+    <title>Boggle</title>
+    <script  type="module" src="./src/js/index.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <div class="timer" id="timer"></div>
+            <h1 id="heading">Boggle!</h1>
+            <button class="btn" id="btn-new">Let's Play</button>
+            <button class="btn" id="btn-stop">Stop!</button>
+        </div>
+            <div class="grid-container">
+                
+                <div class="grid-row">
+                    <div class="grid-cell" id="cell0">
+                    <div class="tile" id="tile0"></div>
+                    </div>
+                    <div class="grid-cell" id="cell1"><div class="tile" id="tile1"></div></div>
+                    <div class="grid-cell" id="cell2"><div class="tile" id="tile2"></div></div>
+                    <div class="grid-cell" id="cell3"><div class="tile" id="tile3"></div></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell" id="cell4"><div class="tile" id="tile4"></div></div>
+                    <div class="grid-cell" id="cell5"><div class="tile" id="tile5"></div></div>
+                    <div class="grid-cell" id="cell6"><div class="tile" id="tile6"></div></div>
+                    <div class="grid-cell" id="cell7"><div class="tile" id="tile7"></div></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell" id="cell8"><div class="tile" id="tile8"></div></div>
+                    <div class="grid-cell" id="cell9"><div class="tile" id="tile9"></div></div>
+                    <div class="grid-cell" id="cell10"><div class="tile" id="tile10"></div></div>
+                    <div class="grid-cell" id="cell11"><div class="tile" id="tile11"></div></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell" id="cell12"><div class="tile" id="tile12"></div></div>
+                    <div class="grid-cell" id="cell13"><div class="tile" id="tile13"></div></div>
+                    <div class="grid-cell" id="cell14"><div class="tile" id="tile14"></div></div>
+                    <div class="grid-cell" id="cell15"><div class="tile" id="tile15"></div></div>
+                </div>
+            </div>
+            <div class="inputSection"></div>
+            <div id="report" class='report'>Results</div>
+            <input type="text" id="words" placeholder="Whatcha thinking?"></input>
+            <input type="submit" class="btn" id="add-btn" value="Submit"></input>
+     
+            <!-- <div id="wordList" class='wordlist'>
+                <ul id=""></ul>
+            </div> -->
+            <div class="c-results">
+                <strong><span id="num-solve">0</span> Words</strong>
+                <ul id="word-list" class="c-wordlist o-grid"></ul>
+            </div>
+        </div>
+    </div>
+    
+
+    
+ 
+</body>
+</html>
