@@ -148,6 +148,7 @@ function arrayMatch(first, second) {
 }
 
 function onCallSolve(){
+    wordList = []
     solveListObj = [];
     solveList = [];
     solvedWordList.innerHTML = ''
