@@ -3,7 +3,7 @@
 **********************************************/
 
 .container {
-	width: 370px;
+	width: 450px;
 	margin: 0 auto;
 }
 
@@ -88,12 +88,6 @@
 	float: right;
 }
 
-.wordlist {
-	font-size: 22px;
-}
-.each-word {
-	margin: 5px 0px;
-}
 .report {
 	font-size: 22px;
 }
@@ -104,12 +98,22 @@
 	font-size: 22px;
 }
 .c-wordlist {
-	column-count: 2;
-	column-gap: 40px;
+	column-count: 4;
+	column-gap: 35px;
 }
 
 .c-found {
 	text-decoration-line: line-through;
+}
+
+li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	padding-inline-start: 0;
 }
 /**********************************************
 *** Timer
