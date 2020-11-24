@@ -25,12 +25,13 @@ function newGame() {
 	myTimer.setTimer();
 	myTimer.startTimer();
 
-    let list = [];
+	//wordlist reset
+	let list = [];
+	const tiles = document.querySelectorAll('div.grid-cell');
+	tiles.forEach(tile => tile.classList.remove('selectedTile'));
 
-	// while (displayList.firstChild) {
-	// 	displayList.removeChild(displayList.firstChild);
-	// }
 
+	//ux visibility
 	stopbtn.style.display = "inline";
 	addbtn.style.display = "inline";
 	document.querySelector('#report').style.display = "block";

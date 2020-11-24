@@ -1,6 +1,5 @@
 export {wordList, addWordsToList, wordInput, countWordList, Trie, myTrie, getAdjacentLetters, onCallSolve, solveList, solveListObj, displayResults}
 import {grid} from './board.js'
-import {newGame} from './index.js'
 
 class Trie{
 
@@ -87,13 +86,7 @@ function addWordsToList() {
     enteredWord = wordInput.value.toLowerCase();
     alertArea.style.visibility = "visible";
 	if(inArray(solveList, enteredWord) && !inArray(wordList, enteredWord) && enteredWord.length > 2){
-	wordList.push(enteredWord); 
-	
-    //display
-   	// let newWord = document.createElement('li');
-	// newWord.classList.add('each-word');
-	// newWord.innerText = enteredWord;
-    // displayList.appendChild(newWord);
+	wordList.push(enteredWord);
     alertArea.innerHTML = `${enteredWord} - That's a boggle!`;
 } else{
     alertArea.innerHTML = `${enteredWord} is not a valid word`;
@@ -218,4 +211,24 @@ function displayResults(solveListObj) {
         return acc + `<li cdata coords="${JSON.stringify(obj.coords)}">${obj.word}</li>`;
     }
     }, '');
+
+    const tiles = document.querySelectorAll('div.grid-cell');
+
+    solvedWordList.addEventListener('click', (e) => {
+        [].forEach.call(tiles, tile => {
+            tile.classList.remove('selectedTile');
+        });
+
+        const word = e.target;
+        if(!word.nodeName === 'LI' && !word.getAttribute('coords')) {
+            return;
+          }
+        const coords = JSON.parse(word.getAttribute('coords'));
+        coords.forEach((coord, index) => {
+            const [row, col] = coord;
+            setTimeout(() => {
+                tiles[4 * row + col].classList.add('selectedTile');
+            }, index * 300);
+        });
+    });
 }

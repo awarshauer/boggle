@@ -16,15 +16,14 @@ this.COLOR_CODES = {
 	alert: {
 		color: 'red',
 		threshold: this.ALERT_THRESHOLD
-	}
-};
+	}};
 
 this.time_limit = time_limit;
 this.timePassed = 0;
 this.timeLeft = time_limit;
 this.timerInterval = null;
 this.remainingPathColor = this.COLOR_CODES.info.color;
-    }
+}
 
 // Credit: Mateusz Rybczonec: https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/
 
@@ -65,11 +64,18 @@ formatTimeLeft(time) {
 	return `${minutes}:${seconds}`;
 }
 
-stopTimer() {
-	clearInterval(this.timerInterval);
+calculateTimeFraction() {
+	const rawTimeFraction = this.timeLeft / this.time_limit;
+	return rawTimeFraction - 1 / this.time_limit * (1 - rawTimeFraction);
+}
+
+setCircleDasharray() {
+    const circleDasharray = `${(this.calculateTimeFraction() * this.FULL_DASH_ARRAY).toFixed(0)} 283`;
+	document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', circleDasharray);
 }
 
 startTimer() {
+	document.getElementById('base-timer-label').innerHTML = this.formatTimeLeft(this.time_limit);
 	this.timerInterval = setInterval(() => {
 		this.timePassed = this.timePassed += 1;
 		this.timeLeft = this.time_limit - this.timePassed;
@@ -84,6 +90,11 @@ startTimer() {
 	}, 1000);
 }
 
+
+stopTimer() {
+	clearInterval(this.timerInterval);
+}
+
 gameOver() {
 	countWordList();
 	if(solveList.length) {
@@ -95,7 +106,6 @@ gameOver() {
 	document.querySelector('#report').style.display = "none";
 	document.querySelector('.c-results').style.display = "block";
 }
-
 
 resetTimer(){
     this.timePassed = 0
@@ -114,15 +124,4 @@ setRemainingPathColor(timeLeft) {
 		document.getElementById('base-timer-path-remaining').classList.add(warning.color);
 	}
 }
-
-calculateTimeFraction() {
-	const rawTimeFraction = this.timeLeft / this.time_limit;
-	return rawTimeFraction - 1 / this.time_limit * (1 - rawTimeFraction);
-}
-
-setCircleDasharray() {
-    const circleDasharray = `${(this.calculateTimeFraction() * this.FULL_DASH_ARRAY).toFixed(0)} 283`;
-	document.getElementById('base-timer-path-remaining').setAttribute('stroke-dasharray', circleDasharray);
-}
-
 }

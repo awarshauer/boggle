@@ -52,6 +52,10 @@
 	border-radius: 20px;
 }
 
+.selectedTile {
+	background: #f69e56;
+}
+
 .report {
 	padding: 10px 0px;
 	visibility: hidden;
