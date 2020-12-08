@@ -71,12 +71,14 @@ let mouseWord = ''
 
 function startingWord(){
 	mouseWord += this.innerHTML
+	this.classList.add('selectedTile')
 	isWording = true;
 }
 
 function nextLetter(){
 	if (isWording === true){
 		mouseWord += this.innerHTML;
+	this.classList.add('selectedTile')
 	}
 };
 
@@ -85,11 +87,11 @@ function endWord(){
 		addMouseWordsToList();
 		isWording = false;
 		mouseWord = ''
+		tiles2.forEach(tile => tile.classList.remove('selectedTile'));
 	}
 }
 
 const tiles2 = document.querySelectorAll('div.tile');
-console.log(tiles2);
 
 tiles2.forEach(div => div.addEventListener('mousedown', startingWord));
 tiles2.forEach(div => div.addEventListener('mouseenter', nextLetter));
