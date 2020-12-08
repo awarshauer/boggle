@@ -1,8 +1,8 @@
 import { Timer } from './timer.js';
-import {wordList, addWordsToList, wordInput, countWordList, getAdjacentLetters, onCallSolve, solveList, displayResults, solveListObj} from './wordlist.js';
+import {wordList, addWordsToList, addMouseWordsToList, wordInput, countWordList, getAdjacentLetters, onCallSolve, solveList, displayResults, solveListObj} from './wordlist.js';
 // import { Wordlist } from './wordlist.js';
 import {reset, shake, grid, makeGrid, board} from './board.js';
-export {newGame}
+export {mouseWord};
 
 
 let myTimer = new Timer(180);
@@ -46,13 +46,12 @@ function stopGame(){
 }
 
 //Event Listeners
+
 let startbtn = document.querySelector('#btn-new');
 let addbtn = document.querySelector('#add-btn');
 let stopbtn = document.querySelector('#btn-stop');
 let displayList = document.querySelector('div.wordlist');
 // let wordInput = document.getElementById('words');
-
-
 
 startbtn.addEventListener('click', newGame);
 stopbtn.addEventListener('click', stopGame);
@@ -65,7 +64,35 @@ wordInput.addEventListener('keypress', function(e) {
 });
 
 
-/* To build
+//Mouse over select
 
-*/
+let isWording = false;
+let mouseWord = ''
+
+function startingWord(){
+	mouseWord += this.innerHTML
+	isWording = true;
+}
+
+function nextLetter(){
+	if (isWording === true){
+		mouseWord += this.innerHTML;
+	}
+};
+
+function endWord(){
+	if (isWording === true){
+		addMouseWordsToList();
+		isWording = false;
+		mouseWord = ''
+	}
+}
+
+const tiles2 = document.querySelectorAll('div.tile');
+console.log(tiles2);
+
+tiles2.forEach(div => div.addEventListener('mousedown', startingWord));
+tiles2.forEach(div => div.addEventListener('mouseenter', nextLetter));
+tiles2.forEach(div => div.addEventListener('mouseup', endWord));
+
 

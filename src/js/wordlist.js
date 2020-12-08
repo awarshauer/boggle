@@ -1,5 +1,6 @@
-export {wordList, addWordsToList, wordInput, countWordList, Trie, myTrie, getAdjacentLetters, onCallSolve, solveList, solveListObj, displayResults}
+export {wordList, addWordsToList, addMouseWordsToList, wordInput, countWordList, Trie, myTrie, getAdjacentLetters, onCallSolve, solveList, solveListObj, displayResults}
 import {grid} from './board.js'
+import {mouseWord} from './index.js'
 
 class Trie{
 
@@ -80,10 +81,10 @@ let alertArea =  document.querySelector('#report');
 let wordList = [];
 let wordInput = document.getElementById('words');
 let enteredWord = '';
-
+const tiles = document.querySelectorAll('div.grid-cell');
 
 function addWordsToList() {
-    enteredWord = wordInput.value.toLowerCase();
+    enteredWord = wordInput.value.toLowerCase()
     alertArea.style.visibility = "visible";
 	if(inArray(solveList, enteredWord) && !inArray(wordList, enteredWord) && enteredWord.length > 2){
 	wordList.push(enteredWord);
@@ -92,6 +93,17 @@ function addWordsToList() {
     alertArea.innerHTML = `${enteredWord} is not a valid word`;
 }
 	wordInput.value = '';
+}
+
+function addMouseWordsToList(word){
+    enteredWord = mouseWord.toLowerCase();
+    alertArea.style.visibility = "visible";
+	if(inArray(solveList, enteredWord) && !inArray(wordList, enteredWord) && enteredWord.length > 2){
+	wordList.push(enteredWord);
+    alertArea.innerHTML = `${enteredWord} - That's a boggle!`;
+} else{
+    alertArea.innerHTML = `${enteredWord} is not a valid word`;
+}
 }
 
 function countWordList() {
@@ -211,8 +223,6 @@ function displayResults(solveListObj) {
         return acc + `<li cdata coords="${JSON.stringify(obj.coords)}">${obj.word}</li>`;
     }
     }, '');
-
-    const tiles = document.querySelectorAll('div.grid-cell');
 
     solvedWordList.addEventListener('click', (e) => {
         [].forEach.call(tiles, tile => {
