@@ -1,5 +1,5 @@
 import { Timer } from './timer.js';
-import {wordList, addWordsToList, addMouseWordsToList, wordInput, countWordList, getAdjacentLetters, onCallSolve, solveList, displayResults, solveListObj} from './wordlist.js';
+import {wordList, addWordsToList, addMouseWordsToList, wordInput, countWordList, getAdjacentLetters, onCallSolve, solveList, displayResults, solveListObj, inArray} from './wordlist.js';
 // import { Wordlist } from './wordlist.js';
 import {reset, shake, grid, makeGrid, board} from './board.js';
 export {mouseWord};
@@ -68,17 +68,20 @@ wordInput.addEventListener('keypress', function(e) {
 
 let isWording = false;
 let mouseWord = ''
+let usedTiles = [];
 
 function startingWord(){
 	mouseWord += this.innerHTML
+	usedTiles.push(this.id);
 	this.classList.add('selectedTile')
 	isWording = true;
 }
 
 function nextLetter(){
-	if (isWording === true){
+	if (isWording === true && !inArray(usedTiles, this.id)){
 		mouseWord += this.innerHTML;
-	this.classList.add('selectedTile')
+		usedTiles.push(this.id);
+		this.classList.add('selectedTile')
 	}
 };
 
@@ -87,6 +90,7 @@ function endWord(){
 		addMouseWordsToList();
 		isWording = false;
 		mouseWord = ''
+		usedTiles = [];
 		tiles2.forEach(tile => tile.classList.remove('selectedTile'));
 	}
 }

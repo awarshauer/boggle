@@ -1,4 +1,4 @@
-export {wordList, addWordsToList, addMouseWordsToList, wordInput, countWordList, Trie, myTrie, getAdjacentLetters, onCallSolve, solveList, solveListObj, displayResults}
+export {wordList, addWordsToList, addMouseWordsToList, wordInput, countWordList, Trie, myTrie, getAdjacentLetters, onCallSolve, solveList, solveListObj, displayResults, inArray}
 import {grid} from './board.js'
 import {mouseWord} from './index.js'
 
