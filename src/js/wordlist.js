@@ -1,4 +1,4 @@
-export {wordList, addWordsToList, addMouseWordsToList, wordInput, countWordList, Trie, myTrie, getAdjacentLetters, onCallSolve, solveList, solveListObj, displayResults, inArray}
+export {wordList, addWordsToList, wordInput, countWordList, Trie, myTrie, getAdjacentLetters, onCallSolve, solveList, solveListObj, displayResults, inArray}
 import {grid} from './board.js'
 import {mouseWord} from './index.js'
 
@@ -84,26 +84,22 @@ let enteredWord = '';
 const tiles = document.querySelectorAll('div.grid-cell');
 
 function addWordsToList() {
-    enteredWord = wordInput.value.toLowerCase()
+    if (!wordInput.value) {
+        enteredWord = mouseWord.toLowerCase();
+    } else {
+        enteredWord = wordInput.value.toLowerCase()
+    }
     alertArea.style.visibility = "visible";
+    alertArea.style.display = "block";
 	if(inArray(solveList, enteredWord) && !inArray(wordList, enteredWord) && enteredWord.length > 2){
-	wordList.push(enteredWord);
+    wordList.push(enteredWord);
+    alertArea.classList.add('validWord');
     alertArea.innerHTML = `${enteredWord} - That's a boggle!`;
 } else{
+    alertArea.classList.add('notWord');
     alertArea.innerHTML = `${enteredWord} is not a valid word`;
 }
 	wordInput.value = '';
-}
-
-function addMouseWordsToList(word){
-    enteredWord = mouseWord.toLowerCase();
-    alertArea.style.visibility = "visible";
-	if(inArray(solveList, enteredWord) && !inArray(wordList, enteredWord) && enteredWord.length > 2){
-	wordList.push(enteredWord);
-    alertArea.innerHTML = `${enteredWord} - That's a boggle!`;
-} else{
-    alertArea.innerHTML = `${enteredWord} is not a valid word`;
-}
 }
 
 function countWordList() {

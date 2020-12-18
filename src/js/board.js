@@ -1,8 +1,9 @@
-export {reset, shake, grid, makeGrid, board}
+export {reset, shake, grid, makeGrid, board, sharedBoard}
 let takenSpaces = [];
 let availableSpaces = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ];
 let board = [];
-let grid = [[],[],[],[]];
+let col = 3;
+let grid = Array(col+1).fill(null).map(() => Array(col+1).fill(null));
 let dice = [
 	[ 'A', 'A', 'E', 'E', 'G', 'N' ],
 	[ 'A', 'B', 'B', 'J', 'O', 'O' ],
@@ -56,7 +57,6 @@ dice.forEach(die => {
 }) };
 
 function makeGrid(arr){
-let col = 3;
 let k = 0;
 let l = 0;
 for(let [idx, tiles] of arr.entries()){  
@@ -67,4 +67,22 @@ for(let [idx, tiles] of arr.entries()){
     }else{
      k++
      l=0  
-    }}}
+	}}};
+
+
+// URL Hash to populate board
+
+const { hash } = window.location;
+const sharedBoard = atob(hash.replace('#', ''));
+board = sharedBoard.split(',');
+
+document.querySelector('#share-btn').addEventListener('click', event => {
+	const input = board.join('');
+	console.log(input);
+	const encrypted = btoa(board);
+	const linkInput = document.querySelector('#link-input');
+
+	linkInput.value = `${window.location}#${encrypted}`;
+	linkInput.select();
+})
+

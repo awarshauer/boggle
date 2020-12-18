@@ -14,7 +14,9 @@
             <h1 id="heading">Boggle!</h1>
             <button class="btn" id="btn-new">Let's Play</button>
             <button class="btn" id="btn-stop">Stop!</button>
+        
         </div>
+        <div id="report" class='report'>Results</div>
             <div class="grid-container unselectable">
                 
                 <div class="grid-row">
@@ -43,10 +45,12 @@
                 </div>
             </div>
             <div class="inputSection"></div>
-            <div id="report" class='report'>Results</div>
             <input type="text" id="words" placeholder="Whatcha thinking?"></input>
             <input type="submit" class="btn" id="add-btn" value="Submit"></input>
      
+
+
+
             <!-- <div id="wordList" class='wordlist'>
                 <ul id=""></ul>
             </div> -->
@@ -54,7 +58,14 @@
                 <strong><span id="num-solve">0</span> Words</strong>
                 <ul id="word-list" class="c-wordlist o-grid"></ul>
             </div>
-        </div>
+
+            <div id="share-board">
+                <button id="share-btn" class="btn">Create Link</button>
+                <div id="link-form">
+                    Share this link with a friend
+                    <input id="link-input" />
+                </div>
+            </div>
     </div>
     
 

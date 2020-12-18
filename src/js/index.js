@@ -1,7 +1,7 @@
 import { Timer } from './timer.js';
-import {wordList, addWordsToList, addMouseWordsToList, wordInput, countWordList, getAdjacentLetters, onCallSolve, solveList, displayResults, solveListObj, inArray} from './wordlist.js';
+import {wordList, addWordsToList, wordInput, countWordList, getAdjacentLetters, onCallSolve, solveList, displayResults, solveListObj, inArray} from './wordlist.js';
 // import { Wordlist } from './wordlist.js';
-import {reset, shake, grid, makeGrid, board} from './board.js';
+import {reset, shake, grid, makeGrid, board, sharedBoard} from './board.js';
 export {mouseWord};
 
 
@@ -9,10 +9,17 @@ let myTimer = new Timer(180);
 
 // New Game
 function newGame() {
-	reset();
-	shake();
-	makeGrid(board);
-	onCallSolve();
+	if(sharedBoard){
+		makeGrid(board);
+		onCallSolve();
+	} else {
+		reset();
+		shake();
+		makeGrid(board);
+		onCallSolve();
+	}
+
+
 	
 	//title
 	document.getElementById('heading').innerHTML = "Let's go!";
@@ -34,7 +41,7 @@ function newGame() {
 	//ux visibility
 	stopbtn.style.display = "inline";
 	addbtn.style.display = "inline";
-	document.querySelector('#report').style.display = "block";
+	document.querySelector('#report').style.display = "none";
 	document.querySelector('#report').style.visibility = "hidden";
 	document.querySelector('#words').style.display = "inline";
 	document.querySelector('.c-results').style.display = "none";
@@ -87,7 +94,7 @@ function nextLetter(){
 
 function endWord(){
 	if (isWording === true){
-		addMouseWordsToList();
+		addWordsToList();
 		isWording = false;
 		mouseWord = ''
 		usedTiles = [];
@@ -100,5 +107,7 @@ const tiles2 = document.querySelectorAll('div.tile');
 tiles2.forEach(div => div.addEventListener('mousedown', startingWord));
 tiles2.forEach(div => div.addEventListener('mouseenter', nextLetter));
 tiles2.forEach(div => div.addEventListener('mouseup', endWord));
+
+
 
 
